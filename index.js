@@ -3,7 +3,7 @@ const multer = require('multer')
 const cors = require('cors')
 const path = require('path')
 const app = express()
-const upload = multer({ dest: 'uploads/' })
+const upload = multer()
 
 app.use(cors({ optionSuccessStatus: 200 }))
 
@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.sendFile('./public/index.html', {root: __dirname})
 })
 
-app.post('/upload', upload.single('upfile'), (req, res) => {
+app.post('/', upload.single('upfile'), (req, res) => {
   console.log(req.file)
   return res.json({
     'name': req.file.originalname,
