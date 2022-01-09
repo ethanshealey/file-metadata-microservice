@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.sendFile('./public/index.html', {root: __dirname})
 })
 
-app.post('/', upload.single('upfile'), (req, res) => {
+app.post('/api/fileanalyse', upload.single('upfile'), (req, res) => {
   console.log(req.file)
   return res.json({
     'name': req.file.originalname,
